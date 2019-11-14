@@ -44,7 +44,7 @@
         /// <summary>
         /// 
         /// </summary>
-        public Email Email { get; set; }
+        public string Email { get; set; }
 
         /// <summary>
         /// 

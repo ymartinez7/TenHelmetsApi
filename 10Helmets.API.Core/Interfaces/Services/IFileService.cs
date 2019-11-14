@@ -8,3 +8,4 @@
     public interface IFileService : IBaseService<File>
     {
     }
+}

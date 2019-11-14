@@ -22,6 +22,6 @@
         /// 
         /// </summary>
         /// <returns></returns>
-        Task<int> CommitTransactionAsync();
+        //Task<int> CommitTransactionAsync();
     }
 }

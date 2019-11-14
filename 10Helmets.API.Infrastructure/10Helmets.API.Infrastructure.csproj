@@ -7,7 +7,13 @@
 
   <ItemGroup>
     <Folder Include="Data\Config\" />
-    <Folder Include="Data\Repositories\" />
+    <Folder Include="Data\Context\" />
+    <Folder Include="Data\Seeds\" />
+    <Folder Include="Data\Scripts\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\10Helmets.API.Core\10Helmets.API.Core.csproj" />
   </ItemGroup>
 
 </Project>
