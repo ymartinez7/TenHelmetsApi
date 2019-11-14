@@ -45,7 +45,7 @@
             {
                 config.SwaggerDoc("v1", new Swashbuckle.AspNetCore.Swagger.Info()
                 {
-                    Title = "10Helmets APIs RESTful"
+                    Title = "10Helmets APIs RESTful Direction"
                 });
 
                 var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
@@ -77,7 +77,7 @@
             app.UseSwagger();
             app.UseSwaggerUI(config =>
             {
-                config.SwaggerEndpoint("../swagger/v1/swagger.json", "Backend API");
+                config.SwaggerEndpoint("../swagger/v1/swagger.json", "Backend API Direction");
             });
 
             app.UseMvc();
