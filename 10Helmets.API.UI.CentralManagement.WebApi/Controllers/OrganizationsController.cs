@@ -11,5 +11,10 @@ namespace _10Helmets.API.UI.CentralManagement.WebApi.Controllers
     [ApiController]
     public class OrganizationsController : ControllerBase
     {
+        [HttpGet]
+        public ActionResult<IEnumerable<string>> Get()
+        {
+            return new string[] { "value1", "value2" };
+        }
     }
 }
