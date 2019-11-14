@@ -5,7 +5,7 @@
     /// <summary>
     /// 
     /// </summary>
-    public sealed class DocumentType : Base
+    public class DocumentType : BaseEntity
     {
         /// <summary>
         /// 

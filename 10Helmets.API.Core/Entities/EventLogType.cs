@@ -5,14 +5,14 @@
     /// <summary>
     /// 
     /// </summary>
-    public class EspenseType : BaseEntity
+    public class EventLogType : BaseEntity
     {
         /// <summary>
         /// 
         /// </summary>
-        public EspenseType()
+        public EventLogType()
         {
-            this.Espenses = new HashSet<Espense>();
+            this.EventLogs = new HashSet<EventLog>();
         }
 
         /// <summary>
@@ -23,11 +23,6 @@
         /// <summary>
         /// 
         /// </summary>
-        public string Description { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public virtual IEnumerable<Espense> Espenses { get; private set; }
+        public virtual IEnumerable<EventLog> EventLogs { get; private set; }
     }
 }

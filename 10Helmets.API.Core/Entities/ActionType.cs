@@ -5,14 +5,14 @@
     /// <summary>
     /// 
     /// </summary>
-    public class EspenseType : BaseEntity
+    public class ActionType : BaseEntity
     {
         /// <summary>
         /// 
         /// </summary>
-        public EspenseType()
+        public ActionType()
         {
-            this.Espenses = new HashSet<Espense>();
+            this.Cals = new HashSet<Cal>();
         }
 
         /// <summary>
@@ -23,11 +23,6 @@
         /// <summary>
         /// 
         /// </summary>
-        public string Description { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public virtual IEnumerable<Espense> Espenses { get; private set; }
+        public virtual IEnumerable<Cal> Cals { get; private set; }
     }
 }

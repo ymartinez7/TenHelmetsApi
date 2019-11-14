@@ -1,9 +1,11 @@
 ﻿namespace _10Helmets.API.Core.Entities
 {
+    using System.Collections.Generic;
+
     /// <summary>
     /// 
     /// </summary>
-    public sealed class InspectionType : Base
+    public class InspectionType : BaseEntity
     {
         /// <summary>
         /// 

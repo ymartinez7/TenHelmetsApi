@@ -5,7 +5,7 @@
     /// <summary>
     /// Register the bill of each project
     /// </summary>
-    public sealed class Bill : Base
+    public class Bill : BaseEntity
     {
         /// <summary>
         /// Associeted porject to the bill

@@ -3,7 +3,7 @@
     using System;
     using System.Collections.Generic;
 
-    public sealed class Purchase : Base
+    public class Purchase : BaseEntity
     {
         /// <summary>
         /// 

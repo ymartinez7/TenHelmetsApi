@@ -3,27 +3,17 @@
     /// <summary>
     /// 
     /// </summary>
-    public class PurchaseDetail : BaseEntity
+    public class ResourceRequest : BaseEntity
     {
         /// <summary>
         /// 
         /// </summary>
-        public int PurchaseId { get; set; }
+        public int RequestsId { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public string Item { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public string Brand { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public string Model { get; set; }
+        public int ResourceId { get; set; }
 
         /// <summary>
         /// 
@@ -33,11 +23,11 @@
         /// <summary>
         /// 
         /// </summary>
-        public decimal UnitPrice { get; set; }
+        public virtual Request Request { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public virtual Purchase Purchase { get; set; }
+        public virtual Resource Resource { get; set; }
     }
 }

@@ -5,7 +5,7 @@
     /// <summary>
     /// 
     /// </summary>
-    public sealed class Inspection : Base
+    public class Inspection : BaseEntity
     {
         /// <summary>
         /// 

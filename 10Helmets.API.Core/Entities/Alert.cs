@@ -1,16 +1,14 @@
 ﻿namespace _10Helmets.API.Core.Entities
 {
-    using System;
-
     /// <summary>
     /// 
     /// </summary>
-    public class Cal : BaseEntity
+    public class Alert : BaseEntity
     {
         /// <summary>
         /// 
         /// </summary>
-        public DateTime DetectionDate { get; set; }
+        public int AlertTypeId { get; set; }
 
         /// <summary>
         /// 
@@ -20,37 +18,27 @@
         /// <summary>
         /// 
         /// </summary>
-        public int EmployeeId { get; set; }
-
-        /// <summary>
-        /// /
-        /// </summary>
-        public string Description { get; set; }
+        public int RequestId { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public string Analysis { get; set; }
+        public int ProjectBudgetId { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public int ActionTypeId { get; set; }
+        public string Warning { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public int StatusId { get; set; }
+        public string Critical { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public DateTime CorrectionDate { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public string CorrectionResult { get; set; }
+        public virtual AlertType AlertType { get; set; }
 
         /// <summary>
         /// 
@@ -60,16 +48,11 @@
         /// <summary>
         /// 
         /// </summary>
-        public virtual Employee Employee { get; set; }
+        public virtual Request Request { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public virtual ActionType ActionType { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public virtual Status Status { get; set; }
+        public virtual ProjectBudget ProjectBudget { get; set; }
     }
 }

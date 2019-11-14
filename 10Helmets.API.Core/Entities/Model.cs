@@ -5,12 +5,12 @@
     /// <summary>
     /// 
     /// </summary>
-    public class Sale : BaseEntity
+    public class Model : BaseEntity
     {
         /// <summary>
         /// 
         /// </summary>
-        public Sale()
+        public Model()
         {
             this.SaleDetails = new HashSet<SaleDetail>();
         }
@@ -18,37 +18,32 @@
         /// <summary>
         /// 
         /// </summary>
-        public int CustomerId { get; set; }
+        public string Name { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public int EmployeeId { get; set; }
+        public int Year { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public decimal TotalAmount { get; set; }
+        public string Capacity { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public int PaymentTypeId { get; set; }
+        public string Measure { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public virtual Customer Customer { get; set; }
+        public int ResourceId { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public virtual Employee Employee { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public virtual PaymentType PaymentType { get; set; }
+        public virtual Resource Resource { get; set; }
 
         /// <summary>
         /// 

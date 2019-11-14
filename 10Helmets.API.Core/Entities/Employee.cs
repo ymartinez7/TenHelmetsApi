@@ -5,7 +5,7 @@
     /// <summary>
     /// 
     /// </summary>
-    public sealed class Employee : Base
+    public class Employee : BaseEntity
     {
         /// <summary>
         /// 

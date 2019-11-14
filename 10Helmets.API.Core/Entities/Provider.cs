@@ -5,7 +5,7 @@
     /// <summary>
     /// 
     /// </summary>
-    public sealed class Provider : Base
+    public class Provider : BaseEntity
     {
         /// <summary>
         /// 

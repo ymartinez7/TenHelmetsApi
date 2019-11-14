@@ -1,26 +1,29 @@
 ﻿namespace _10Helmets.API.Core.Entities
 {
-    using System;
     using System.Collections.Generic;
 
     /// <summary>
     /// 
     /// </summary>
-    public class ServiceOrder : BaseEntity
+    public class Status : BaseEntity
     {
         /// <summary>
         /// 
         /// </summary>
-        public ServiceOrder()
+        public Status()
         {
+            this.Bills = new HashSet<Bill>();
+            this.Espenses = new HashSet<Espense>();
+            this.Cals = new HashSet<Cal>();
+            this.Requests = new HashSet<Request>();
+            this.Activities = new HashSet<Activity>();
             this.Projects = new HashSet<Project>();
-            this.Files = new HashSet<File>();
         }
 
         /// <summary>
         /// 
         /// </summary>
-        public decimal Amount { get; set; }
+        public string Name { get; set; }
 
         /// <summary>
         /// 
@@ -30,36 +33,31 @@
         /// <summary>
         /// 
         /// </summary>
-        public int CustomerId { get; set; }
+        public virtual IEnumerable<Bill> Bills { get; private set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public int UnitId { get; set; }
+        public virtual IEnumerable<Espense> Espenses { get; private set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public DateTime ReceptionDate { get; set; }
+        public virtual IEnumerable<Cal> Cals { get; private set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public virtual Customer Customer { get; set; }
+        public virtual IEnumerable<Request> Requests { get; private set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public virtual Unit Unit { get; set; }
+        public virtual IEnumerable<Activity> Activities { get; private set; }
 
         /// <summary>
         /// 
         /// </summary>
         public virtual IEnumerable<Project> Projects { get; private set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public virtual IEnumerable<File> Files { get; private set; }
     }
 }

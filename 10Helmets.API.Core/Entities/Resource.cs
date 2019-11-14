@@ -1,26 +1,26 @@
 ﻿namespace _10Helmets.API.Core.Entities
 {
-    using System;
+    using System.Collections.Generic;
 
     /// <summary>
     /// 
     /// </summary>
-    public class Espense : BaseEntity
+    public class Resource : BaseEntity
     {
         /// <summary>
         /// 
         /// </summary>
-        public int EmployeeId { get; set; }
+        public Resource()
+        {
+            this.SaleDetails = new HashSet<SaleDetail>();
+            this.Models = new HashSet<Model>();
+            this.ResourceRequests = new HashSet<ResourceRequest>();
+        }
 
         /// <summary>
         /// 
         /// </summary>
-        public int EspenseTypeId { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public decimal Amount { get; set; }
+        public string Name { get; set; }
 
         /// <summary>
         /// 
@@ -30,56 +30,56 @@
         /// <summary>
         /// 
         /// </summary>
-        public int ProjectId { get; set; }
+        public int ResourceTypeId { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public DateTime StartDate { get; set; }
+        public int BrandId { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public DateTime EndDate { get; set; }
+        public string SerialNumber { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public bool Reimbursement { get; set; }
+        public int Quantity { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public decimal ReimbursementAmount { get; set; }
+        public decimal UnitaryPrice { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public DateTime ReimbursementDate { get; set; }
+        public string State { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public int StatusId { get; set; }
+        public virtual ResourceType ResourceType { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public virtual Employee Employee { get; set; }
+        public virtual Brand Brand { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public virtual EspenseType EspenseType { get; set; }
+        public virtual IEnumerable<SaleDetail> SaleDetails { get; private set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public virtual Project Project { get; set; }
+        public virtual IEnumerable<Model> Models { get; private set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public virtual Status Status { get; set; }
+        public virtual IEnumerable<ResourceRequest> ResourceRequests { get; private set; }
     }
 }

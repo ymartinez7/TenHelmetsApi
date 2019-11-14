@@ -5,7 +5,7 @@
     /// <summary>
     /// Base entity of all entities
     /// </summary>
-    public abstract class Base
+    public abstract class BaseEntity
     {
         /// <summary>
         /// Automatic identficator

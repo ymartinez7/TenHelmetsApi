@@ -5,14 +5,14 @@
     /// <summary>
     /// 
     /// </summary>
-    public class EspenseType : BaseEntity
+    public class RequestType : BaseEntity
     {
         /// <summary>
         /// 
         /// </summary>
-        public EspenseType()
+        public RequestType()
         {
-            this.Espenses = new HashSet<Espense>();
+            this.Requests = new HashSet<Request>();
         }
 
         /// <summary>
@@ -28,6 +28,16 @@
         /// <summary>
         /// 
         /// </summary>
-        public virtual IEnumerable<Espense> Espenses { get; private set; }
+        public int UnitId { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public virtual Unit Unit { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public virtual IEnumerable<Request> Requests { get; private set; }
     }
 }

@@ -1,21 +1,40 @@
 ﻿namespace _10Helmets.API.Core.Entities
 {
     using System;
+    using System.Collections.Generic;
 
     /// <summary>
     /// 
     /// </summary>
-    public class Cal : BaseEntity
+    public class Request : BaseEntity
     {
         /// <summary>
         /// 
         /// </summary>
-        public DateTime DetectionDate { get; set; }
+        public Request()
+        {
+            this.ResourceRequests = new HashSet<ResourceRequest>();
+        }
 
         /// <summary>
         /// 
         /// </summary>
-        public int ActivityId { get; set; }
+        public int RequestTypeId { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public string Description { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public int projectId { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public DateTime RequiredDate { get; set; }
 
         /// <summary>
         /// 
@@ -23,39 +42,34 @@
         public int EmployeeId { get; set; }
 
         /// <summary>
+        /// 
+        /// </summary>
+        public int PriorityId { get; set; }
+
+        /// <summary>
         /// /
-        /// </summary>
-        public string Description { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public string Analysis { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public int ActionTypeId { get; set; }
-
-        /// <summary>
-        /// 
         /// </summary>
         public int StatusId { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public DateTime CorrectionDate { get; set; }
+        public bool Accomplish { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public string CorrectionResult { get; set; }
+        public DateTime EndDate { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public virtual Activity Activity { get; set; }
+        public virtual RequestType RequestType { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public virtual Project Project { get; set; }
 
         /// <summary>
         /// 
@@ -65,11 +79,16 @@
         /// <summary>
         /// 
         /// </summary>
-        public virtual ActionType ActionType { get; set; }
+        public virtual Priority Priority { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
         public virtual Status Status { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public virtual IEnumerable<ResourceRequest> ResourceRequests { get; private set; }
     }
 }

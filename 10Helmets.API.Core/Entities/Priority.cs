@@ -1,43 +1,48 @@
 ﻿namespace _10Helmets.API.Core.Entities
 {
+    using System.Collections.Generic;
+
     /// <summary>
     /// 
     /// </summary>
-    public class PurchaseDetail : BaseEntity
+    public class Priority : BaseEntity
     {
         /// <summary>
         /// 
         /// </summary>
-        public int PurchaseId { get; set; }
+        public Priority()
+        {
+            this.Requests = new HashSet<Request>();
+        }
 
         /// <summary>
         /// 
         /// </summary>
-        public string Item { get; set; }
+        public string Name { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public string Brand { get; set; }
+        public int MinTM { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public string Model { get; set; }
+        public int MaxTM { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public int Quantity { get; set; }
+        public int AlertTypeId { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public decimal UnitPrice { get; set; }
+        public virtual AlertType AlertType { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public virtual Purchase Purchase { get; set; }
+        public virtual IEnumerable<Request> Requests { get; private set; }
     }
 }

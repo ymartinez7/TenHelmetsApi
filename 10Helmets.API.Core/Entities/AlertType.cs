@@ -5,14 +5,16 @@
     /// <summary>
     /// 
     /// </summary>
-    public class Rol : BaseEntity
+    public class AlertType : BaseEntity
     {
         /// <summary>
         /// 
         /// </summary>
-        public Rol()
+        public AlertType()
         {
-            this.Employees = new HashSet<Employee>();
+            this.Alerts = new HashSet<Alert>();
+            this.Activities = new HashSet<Activity>();
+            this.Priorities = new HashSet<Priority>();
         }
 
         /// <summary>
@@ -28,16 +30,16 @@
         /// <summary>
         /// 
         /// </summary>
-        public int UnitId { get; set; }
+        public virtual IEnumerable<Alert> Alerts { get; private set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public virtual Unit Unit { get; set; }
+        public virtual IEnumerable<Activity> Activities { get; private set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public virtual IEnumerable<Employee> Employees { get; private set; }
+        public virtual IEnumerable<Priority> Priorities { get; private set; }
     }
 }

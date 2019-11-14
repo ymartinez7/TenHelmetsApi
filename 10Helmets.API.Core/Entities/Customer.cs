@@ -1,75 +1,72 @@
 ﻿namespace _10Helmets.API.Core.Entities
 {
-    using System;
     using System.Collections.Generic;
 
     /// <summary>
     /// 
     /// </summary>
-    public class Project : BaseEntity
+    public class Customer : BaseEntity
     {
         /// <summary>
         /// 
         /// </summary>
-        public Project()
+        public Customer()
         {
-            this.Bills = new HashSet<Bill>();
-            this.Espenses = new HashSet<Espense>();
-            this.ProjectBudgets = new HashSet<ProjectBudget>();
+            this.Sales = new HashSet<Sale>();
             this.Surveys = new HashSet<Survey>();
-            this.Requests = new HashSet<Request>();
-            this.Activities = new HashSet<Activity>();
+            this.Sectors = new HashSet<Sector>();
+            this.ServiceOrders = new HashSet<ServiceOrder>();
         }
 
         /// <summary>
         /// 
         /// </summary>
-        public string Code { get; set; }
+        public string Name { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public int ServiceOrderId { get; set; }
+        public string Rif { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public DateTime StartDate { get; set; }
+        public string TaxAddress { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public DateTime EndDate { get; set; }
+        public int SectorId { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public int StatusId { get; set; }
+        public string ContactEmployeeFirstName { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public virtual ServiceOrder ServiceOrder { get; set; }
+        public string ContactEmployeeLastName { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public virtual Status Status { get; set; }
+        public string PhoneNumber { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public virtual IEnumerable<Bill> Bills { get; private set; }
+        public string Email { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public virtual IEnumerable<Espense> Espenses { get; private set; }
+        public virtual Sector Sector { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public virtual IEnumerable<ProjectBudget> ProjectBudgets { get; private set; }
+        public virtual IEnumerable<Sale> Sales { get; private set; }
 
         /// <summary>
         /// 
@@ -79,11 +76,11 @@
         /// <summary>
         /// 
         /// </summary>
-        public virtual IEnumerable<Request> Requests { get; private set; }
+        public virtual IEnumerable<Sector> Sectors { get; private set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public virtual IEnumerable<Activity> Activities { get; private set; }
+        public virtual IEnumerable<ServiceOrder> ServiceOrders { get; private set; }
     }
 }

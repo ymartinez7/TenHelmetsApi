@@ -5,7 +5,7 @@
     /// <summary>
     /// 
     /// </summary>
-    public sealed class PaymentType : Base
+    public class PaymentType : BaseEntity
     {
         /// <summary>
         /// 

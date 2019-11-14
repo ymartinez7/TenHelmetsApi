@@ -3,21 +3,21 @@
     /// <summary>
     /// 
     /// </summary>
-    public class Note : BaseEntity
+    public class EventLog : BaseEntity
     {
         /// <summary>
         /// 
         /// </summary>
-        public string Content { get; set; }
+        public int EventLogTypeId { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public int ActivityId { get; set; }
+        public string Description { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public virtual Activity Activity { get; set; }
+        public virtual EventLogType EventLogType { get; set; }
     }
 }

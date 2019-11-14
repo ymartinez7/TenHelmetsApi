@@ -5,14 +5,14 @@
     /// <summary>
     /// 
     /// </summary>
-    public class EspenseType : BaseEntity
+    public class Organization : BaseEntity
     {
         /// <summary>
         /// 
         /// </summary>
-        public EspenseType()
+        public Organization()
         {
-            this.Espenses = new HashSet<Espense>();
+            this.Units = new HashSet<Unit>();
         }
 
         /// <summary>
@@ -28,6 +28,11 @@
         /// <summary>
         /// 
         /// </summary>
-        public virtual IEnumerable<Espense> Espenses { get; private set; }
+        public string Email { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public virtual IEnumerable<Unit> Units { get; private set; }
     }
 }

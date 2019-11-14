@@ -6,7 +6,7 @@
     /// <summary>
     /// 
     /// </summary>
-    public class ProjectBudget : Base
+    public class ProjectBudget : BaseEntity
     {
         /// <summary>
         /// 

@@ -3,36 +3,31 @@
     /// <summary>
     /// 
     /// </summary>
-    public class Survey : BaseEntity
+    public class File : BaseEntity
     {
         /// <summary>
         /// 
         /// </summary>
-        public int CustomerId { get; set; }
+        public string Name { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public int ProjectId { get; set; }
+        public int Size { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public float Score { get; set; }
+        public string Extension { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public string Qualification { get; set; }
+        public int ServiceOrderId { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public virtual Customer Customer { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public virtual Project Project { get; set; }
+        public virtual ServiceOrder ServiceOrder { get; set; }
     }
 }

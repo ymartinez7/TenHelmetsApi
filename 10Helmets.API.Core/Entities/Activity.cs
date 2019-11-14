@@ -6,7 +6,7 @@
     /// <summary>
     /// 
     /// </summary>
-    public sealed class Activity : Base
+    public class Activity : BaseEntity
     {
         /// <summary>
         /// 

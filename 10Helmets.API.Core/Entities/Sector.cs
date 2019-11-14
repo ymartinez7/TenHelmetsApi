@@ -5,14 +5,15 @@
     /// <summary>
     /// 
     /// </summary>
-    public class EspenseType : BaseEntity
+    public class Sector : BaseEntity
     {
         /// <summary>
         /// 
         /// </summary>
-        public EspenseType()
+        public Sector()
         {
-            this.Espenses = new HashSet<Espense>();
+            this.Providers = new HashSet<Provider>();
+            this.Customers = new HashSet<Customer>();
         }
 
         /// <summary>
@@ -28,6 +29,11 @@
         /// <summary>
         /// 
         /// </summary>
-        public virtual IEnumerable<Espense> Espenses { get; private set; }
+        public virtual IEnumerable<Provider> Providers { get; private set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public virtual IEnumerable<Customer> Customers { get; private set; }
     }
 }

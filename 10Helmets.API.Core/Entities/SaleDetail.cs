@@ -3,7 +3,7 @@
     /// <summary>
     /// 
     /// </summary>
-    public sealed class SaleDetail : Base
+    public class SaleDetail : BaseEntity
     {
         /// <summary>
         /// 

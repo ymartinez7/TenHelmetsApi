@@ -5,7 +5,7 @@
     /// <summary>
     /// 
     /// </summary>
-    public class ActivityType : Base
+    public class ActivityType : BaseEntity
     {
         /// <summary>
         /// 
