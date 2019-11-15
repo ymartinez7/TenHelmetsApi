@@ -30,7 +30,7 @@
         /// <summary>
         /// 
         /// </summary>
-        public int ProjectId { get; set; }
+        //public int ProjectId { get; set; }
 
         /// <summary>
         /// 
@@ -75,7 +75,7 @@
         /// <summary>
         /// 
         /// </summary>
-        public virtual Project Project { get; set; }
+        //public virtual Project Project { get; set; }
 
         /// <summary>
         /// 

@@ -14,7 +14,6 @@
         {
             this.Sales = new HashSet<Sale>();
             this.Surveys = new HashSet<Survey>();
-            this.Sectors = new HashSet<Sector>();
             this.ServiceOrders = new HashSet<ServiceOrder>();
         }
 
@@ -72,11 +71,6 @@
         /// 
         /// </summary>
         public virtual IEnumerable<Survey> Surveys { get; private set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public virtual IEnumerable<Sector> Sectors { get; private set; }
 
         /// <summary>
         /// 

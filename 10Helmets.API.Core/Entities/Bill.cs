@@ -30,7 +30,7 @@
         /// <summary>
         /// <see cref="Status"/> of the bill
         /// </summary>
-        public int StatusId { get; set; }
+        //public int StatusId { get; set; }
 
         /// <summary>
         /// 
@@ -45,6 +45,6 @@
         /// <summary>
         /// 
         /// </summary>
-        public virtual Status Status { get; set; }
+        //public virtual Status Status { get; set; }
     }
 }

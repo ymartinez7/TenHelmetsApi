@@ -19,7 +19,6 @@
             this.ProjectBudgets = new HashSet<ProjectBudget>();
             this.Requests = new HashSet<Request>();
             this.Activities = new HashSet<Activity>();
-            this.Roles = new HashSet<Rol>();
         }
 
         /// <summary>
@@ -111,10 +110,5 @@
         /// 
         /// </summary>
         public virtual IEnumerable<Activity> Activities { get; private set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public virtual IEnumerable<Rol> Roles { get; private set; }
     }
 }
