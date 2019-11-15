@@ -1,5 +1,6 @@
 ﻿namespace _10Helmets.API.UI.CentralManagement.WebApi
 {
+    using _10Helmets.API.Infrastructure.Data.Context;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Mvc;
@@ -39,6 +40,8 @@
         /// <param name="services"></param>
         public void ConfigureServices(IServiceCollection services)
         {
+            //services.AddDbContext<ApplicationDbContext>(config => config.db)
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             services.AddSwaggerGen(config =>
