@@ -1,6 +1,7 @@
 ﻿namespace _10Helmets.API.Infrastructure.Data.Repositories
 {
     using _10Helmets.API.Core.Interfaces.Repositories;
+    using Microsoft.EntityFrameworkCore;
 
     /// <summary>
     /// 
@@ -10,7 +11,7 @@
         /// <summary>
         /// 
         /// </summary>
-        //private DbContext _context;
+        private DbContext _context;
 
         /// <summary>
         /// 
