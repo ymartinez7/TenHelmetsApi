@@ -26,4 +26,10 @@
     <ProjectReference Include="..\10Helmets.API.Core\10Helmets.API.Core.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Logging\" />
+    <Folder Include="Identity\" />
+    <Folder Include="Services\" />
+  </ItemGroup>
+
 </Project>

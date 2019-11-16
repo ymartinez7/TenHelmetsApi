@@ -3,6 +3,8 @@
     using _10Helmets.API.Core.Entities;
     using _10Helmets.API.Core.Interfaces.Repositories;
     using _10Helmets.API.Infrastructure.Data.Context;
+    using _10Helmets.API.Infrastructure.Data.Factories;
+    using _10Helmets.API.Infrastructure.Data.Interfaces;
     using Microsoft.EntityFrameworkCore;
     using System;
     using System.Collections.Generic;
@@ -21,17 +23,22 @@
         /// <summary>
         /// 
         /// </summary>
-        protected DbContext DbContext { get; private set; }
+        protected readonly ApplicationDbContext _dbContext;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        protected readonly IConnectionManager _connectionMaanager;
         #endregion
 
         #region constructor
         /// <summary>
         /// 
         /// </summary>
-        public BaseRepository()
+        public BaseRepository(ApplicationDbContext dbContext)
         {
-            //DbContext = ServiceLocator.Current.GetInstance<ContextManager>().Context;
-            DbContext = new ApplicationDbContext();
+            this._dbContext = dbContext;
+            this._connectionMaanager = ConnectionManagerFactory.ObtenerInstancia;
         }
         #endregion
 
@@ -45,14 +52,14 @@
         {
             try
             {
-                //model = DbContext.Set<T>().Add(model);
+                this._dbContext.Set<T>().Add(model);
                 SaveChanges();
+                return model;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw ex;
+                throw;
             }
-            return model;
         }
 
         /// <summary>
@@ -64,14 +71,14 @@
         {
             try
             {
-                //model = DbContext.Set<T>().AddRange(model);
+                this._dbContext.Set<T>().AddRange(model);
                 SaveChanges();
+                return model;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw ex;
+                throw;
             }
-            return model;
         }
 
         /// <summary>
@@ -83,14 +90,14 @@
         {
             try
             {
-                //model = DbContext.Set<T>().Add(model);
+                this._dbContext.Set<T>().Add(model);
                 await SaveChangesAsync();
+                return model;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw ex;
+                throw;
             }
-            return model;
         }
 
         /// <summary>
@@ -102,14 +109,14 @@
         {
             try
             {
-                //model = DbContext.Set<T>().AddRange(model);
+                this._dbContext.Set<T>().AddRange(model);
                 await SaveChangesAsync();
+                return model;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw ex;
+                throw;
             }
-            return model;
         }
 
         /// <summary>
@@ -118,7 +125,7 @@
         /// <param name="model"></param>
         public void AddUoW(IEnumerable<T> model)
         {
-            DbContext.Set<T>().AddRange(model);
+            this._dbContext.Set<T>().AddRange(model);
         }
 
         /// <summary>
@@ -127,12 +134,12 @@
         /// <param name="id"></param>
         public void Delete(int id)
         {
-            var model = Find(id);
+            var model = this.Find(id);
 
             if (model == null)
                 throw new ArgumentNullException();
 
-            Delete(model);
+            this.Delete(model);
         }
 
         /// <summary>
@@ -143,12 +150,12 @@
         {
             try
             {
-                DbContext.Set<T>().Remove(model);
+                this._dbContext.Set<T>().Remove(model);
                 SaveChanges();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw ex;
+                throw;
             }
         }
 
@@ -160,12 +167,12 @@
         {
             try
             {
-                DbContext.Set<T>().RemoveRange(model);
+                this._dbContext.Set<T>().RemoveRange(model);
                 SaveChanges();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw ex;
+                throw;
             }
         }
 
@@ -176,12 +183,12 @@
         /// <returns></returns>
         public async Task DeleteAsync(int id)
         {
-            var model = Find(id);
+            var model = this.Find(id);
 
             if (model == null)
                 throw new ArgumentNullException();
 
-            await DeleteAsync(model);
+            await this.DeleteAsync(model);
         }
 
         /// <summary>
@@ -193,12 +200,12 @@
         {
             try
             {
-                DbContext.Set<T>().Remove(model);
+                this._dbContext.Set<T>().Remove(model);
                 await SaveChangesAsync();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw ex;
+                throw;
             }
         }
 
@@ -211,12 +218,12 @@
         {
             try
             {
-                DbContext.Set<T>().RemoveRange(model);
+                this._dbContext.Set<T>().RemoveRange(model);
                 await SaveChangesAsync();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw ex;
+                throw;
             }
         }
 
@@ -226,7 +233,7 @@
         /// <param name="model"></param>
         public void DeleteUoW(IEnumerable<T> model)
         {
-            DbContext.Set<T>().RemoveRange(model);
+            this._dbContext.Set<T>().RemoveRange(model);
         }
 
         /// <summary>
@@ -236,7 +243,7 @@
         /// <returns></returns>
         public int Count()
         {
-            return DbContext.Set<T>().Count();
+            return this._dbContext.Set<T>().Count();
         }
 
         /// <summary>
@@ -245,9 +252,10 @@
         /// <param name="id"></param>
         /// <param name="active"></param>
         /// <returns></returns>
-        public T Find(int id, [Optional] bool active)
+        public T Find(int id, [Optional]
+        bool active)
         {
-            return DbContext.Set<T>().Find(id);
+            return this._dbContext.Set<T>().Find(id);
         }
 
         /// <summary>
@@ -256,9 +264,10 @@
         /// <param name="model"></param>
         /// <param name="active"></param>
         /// <returns></returns>
-        public T Find(T model, [Optional] bool active)
+        public T Find(T model, 
+            [Optional] bool active)
         {
-            return DbContext.Set<T>().Find(model);
+            return this._dbContext.Set<T>().Find(model);
         }
 
         /// <summary>
@@ -267,9 +276,10 @@
         /// <param name="expression"></param>
         /// <param name="active"></param>
         /// <returns></returns>
-        public IEnumerable<T> Find(Expression<Func<T, bool>> expression, [Optional] bool active)
+        public IEnumerable<T> Find(Expression<Func<T, bool>> expression, 
+            [Optional] bool active)
         {
-            return DbContext.Set<T>().Where(expression).ToList();
+            return this._dbContext.Set<T>().Where(expression).ToList();
         }
 
         /// <summary>
@@ -278,9 +288,10 @@
         /// <param name="id"></param>
         /// <param name="active"></param>
         /// <returns></returns>
-        public async Task<T> FindAsync(int id, [Optional] bool active)
+        public async Task<T> FindAsync(int id, 
+            [Optional] bool active)
         {
-            return await DbContext.Set<T>().FindAsync(id);
+            return await this._dbContext.Set<T>().FindAsync(id);
         }
 
         /// <summary>
@@ -289,9 +300,10 @@
         /// <param name="model"></param>
         /// <param name="active"></param>
         /// <returns></returns>
-        public async Task<T> FindAsync(T model, [Optional] bool active)
+        public async Task<T> FindAsync(T model, 
+            [Optional] bool active)
         {
-            return await DbContext.Set<T>().FindAsync(model);
+            return await this._dbContext.Set<T>().FindAsync(model);
         }
 
         /// <summary>
@@ -301,7 +313,7 @@
         /// <returns></returns>
         public async Task<IEnumerable<T>> FindAsync([Optional] bool active)
         {
-            return await DbContext.Set<T>().ToListAsync();
+            return await this._dbContext.Set<T>().ToListAsync();
         }
 
         /// <summary>
@@ -310,9 +322,10 @@
         /// <param name="expression"></param>
         /// <param name="active"></param>
         /// <returns></returns>
-        public async Task<IEnumerable<T>> FindAsync(Expression<Func<T, bool>> expression, [Optional] bool active)
+        public async Task<IEnumerable<T>> FindAsync(Expression<Func<T, bool>> expression, 
+            [Optional] bool active)
         {
-            return await DbContext.Set<T>().Where(expression).ToListAsync();
+            return await this._dbContext.Set<T>().Where(expression).ToListAsync();
         }
 
         /// <summary>
@@ -324,12 +337,12 @@
             try
             {
                 //DbContext.Set<T>().Attach(model);
-                DbContext.Entry(model).State = EntityState.Modified;
+                this._dbContext.Entry(model).State = EntityState.Modified;
                 SaveChanges();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw (ex);
+                throw;
             }
         }
 
@@ -344,13 +357,13 @@
                 foreach (var item in model)
                 {
                     //DbContext.Set<T>().Attach(item);
-                    DbContext.Entry(item).State = EntityState.Modified;
+                    this._dbContext.Entry(item).State = EntityState.Modified;
                 }
                 SaveChanges();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw (ex);
+                throw;
             }
         }
 
@@ -363,12 +376,12 @@
         {
             try
             {
-                DbContext.Entry(model).State = EntityState.Modified;
+                this._dbContext.Entry(model).State = EntityState.Modified;
                 await SaveChangesAsync();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw (ex);
+                throw;
             }
         }
 
@@ -383,13 +396,13 @@
             {
                 foreach (var item in model)
                 {
-                    DbContext.Entry(item).State = EntityState.Modified;
+                    this._dbContext.Entry(item).State = EntityState.Modified;
                 }
                 await SaveChangesAsync();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw (ex);
+                throw;
             }
         }
 
@@ -403,12 +416,12 @@
             {
                 foreach (var item in model)
                 {
-                    DbContext.Entry(item).State = EntityState.Modified;
+                   this._dbContext.Entry(item).State = EntityState.Modified;
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw (ex);
+                throw;
             }
         }
 
@@ -418,7 +431,7 @@
         /// <returns></returns>
         private int SaveChanges()
         {
-            return DbContext.SaveChanges();
+            return this._dbContext.SaveChanges();
         }
 
         /// <summary>
@@ -427,7 +440,7 @@
         /// <returns></returns>
         private async Task<int> SaveChangesAsync()
         {
-            return await DbContext.SaveChangesAsync();
+            return await this._dbContext.SaveChangesAsync();
         }
 
         /// <summary>
@@ -435,9 +448,9 @@
         /// </summary>
         public void Dispose()
         {
-            if (DbContext != null)
+            if (this._dbContext != null)
             {
-                DbContext.Dispose();
+                this._dbContext.Dispose();
             }
         }
         #endregion

@@ -2,11 +2,20 @@
 {
     using _10Helmets.API.Core.Entities;
     using _10Helmets.API.Core.Interfaces.Repositories;
+    using _10Helmets.API.Infrastructure.Data.Context;
 
     /// <summary>
     /// 
     /// </summary>
     public sealed class PaymentTypeRepository : BaseRepository<PaymentType>, IPaymentTypeRepository
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="dbContext"></param>
+        public PaymentTypeRepository(ApplicationDbContext dbContext) : base(dbContext)
+        {
+
+        }
     }
 }

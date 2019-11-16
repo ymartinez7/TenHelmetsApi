@@ -2,11 +2,20 @@
 {
     using _10Helmets.API.Core.Entities;
     using _10Helmets.API.Core.Interfaces.Repositories;
+    using _10Helmets.API.Infrastructure.Data.Context;
 
     /// <summary>
     /// 
     /// </summary>
     public sealed class ResourceRequestRepository : BaseRepository<ResourceRequest>, IResourceRequestRepository
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="dbContext"></param>
+        public ResourceRequestRepository(ApplicationDbContext dbContext) : base(dbContext)
+        {
+
+        }
     }
 }
