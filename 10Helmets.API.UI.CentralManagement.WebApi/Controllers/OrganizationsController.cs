@@ -37,7 +37,8 @@
         public OrganizationsController(IConfiguration configuration,
             IMapper mapper,
             IHostingEnvironment environment,
-            IOrganizationService organizationService) : base(configuration,
+            IOrganizationService organizationService) 
+            : base(configuration,
                   mapper,
                   environment)
         {

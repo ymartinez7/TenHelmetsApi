@@ -217,17 +217,29 @@
         public DbSet<ServiceOrder> ServiceOrders { get; set; }
         #endregion
 
+        #region Constructor
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="options"></param>
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) 
+            : base(options)
+        {
+
+        }
+        #endregion
+
         #region Methods
         /// <summary>
         /// 
         /// </summary>
         /// <param name="optionsBuilder"></param>
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseSqlServer("Data source=localhost\\MSSQLSERVER_2012;Initial catalog=10Helmets;Persist Security Info=True;User= sa;Password=y18010611m")
-                .EnableSensitiveDataLogging(true)
-                .UseLoggerFactory(new LoggerFactory().AddConsole((category, level) => level == LogLevel.Information && category == DbLoggerCategory.Database.Command.Name, true));
-        }
+        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //{
+        //    optionsBuilder.UseSqlServer("Data source=localhost\\MSSQLSERVER_2012;Initial catalog=10Helmets;Persist Security Info=True;User= sa;Password=y18010611m")
+        //        .EnableSensitiveDataLogging(true)
+        //        .UseLoggerFactory(new LoggerFactory().AddConsole((category, level) => level == LogLevel.Information && category == DbLoggerCategory.Database.Command.Name, true));
+        //}
 
         /// <summary>
         /// 
