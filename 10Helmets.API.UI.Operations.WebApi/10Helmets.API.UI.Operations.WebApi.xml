@@ -4,6 +4,92 @@
         <name>10Helmets.API.UI.Operations.WebApi</name>
     </assembly>
     <members>
+        <member name="T:_10Helmets.API.UI.Operations.WebApi.Controllers.BaseController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:_10Helmets.API.UI.Operations.WebApi.Controllers.BaseController._mapper">
+            <summary>
+            Mapea las entidades a viemodels
+            </summary>
+        </member>
+        <member name="F:_10Helmets.API.UI.Operations.WebApi.Controllers.BaseController._configuration">
+            <summary>
+            Contiene las variables 
+            de configuración de la aplicación
+            </summary>
+        </member>
+        <member name="F:_10Helmets.API.UI.Operations.WebApi.Controllers.BaseController._environment">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:_10Helmets.API.UI.Operations.WebApi.Controllers.BaseController.#ctor(Microsoft.Extensions.Configuration.IConfiguration,AutoMapper.IMapper,Microsoft.AspNetCore.Hosting.IHostingEnvironment)">
+            <summary>
+            
+            </summary>
+            <param name="configuration"></param>
+            <param name="mapper"></param>
+            <param name="environment"></param>
+        </member>
+        <member name="M:_10Helmets.API.UI.Operations.WebApi.Controllers.BaseController.GetConfigurationValue(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="valueName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:_10Helmets.API.UI.Operations.WebApi.Controllers.BaseController.GetMessage(System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="messageCode"></param>
+            <returns></returns>
+        </member>
+        <member name="M:_10Helmets.API.UI.Operations.WebApi.Controllers.BaseController.HandleException(System.String,System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="source"></param>
+            <param name="description"></param>
+            <param name="date"></param>
+        </member>
+        <member name="T:_10Helmets.API.UI.Operations.WebApi.Controllers.ProjectsController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:_10Helmets.API.UI.Operations.WebApi.Controllers.ProjectsController._projectService">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:_10Helmets.API.UI.Operations.WebApi.Controllers.ProjectsController.#ctor(Microsoft.Extensions.Configuration.IConfiguration,AutoMapper.IMapper,Microsoft.AspNetCore.Hosting.IHostingEnvironment,_10Helmets.API.Core.Interfaces.Services.IProjectService)">
+            <summary>
+            
+            </summary>
+            <param name="configuration"></param>
+            <param name="mapper"></param>
+            <param name="environment"></param>
+            <param name="projectService"></param>
+        </member>
+        <member name="M:_10Helmets.API.UI.Operations.WebApi.Controllers.ProjectsController.Get">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:_10Helmets.API.UI.Operations.WebApi.Mapper.MapperConfig">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:_10Helmets.API.UI.Operations.WebApi.Mapper.MapperConfig.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="T:_10Helmets.API.UI.Operations.WebApi.Startup">
             <summary>
             

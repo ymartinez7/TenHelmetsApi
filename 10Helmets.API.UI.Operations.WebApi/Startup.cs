@@ -1,8 +1,16 @@
 ﻿namespace _10Helmets.API.UI.Operations.WebApi
 {
+    using _10Helmets.API.Core.Interfaces.Repositories;
+    using _10Helmets.API.Core.Interfaces.Services;
+    using _10Helmets.API.Core.Services;
+    using _10Helmets.API.Infrastructure.Data.Context;
+    using _10Helmets.API.Infrastructure.Data.Repositories;
+    using _10Helmets.API.UI.Operations.WebApi.Mapper;
+    using AutoMapper;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Mvc;
+    using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using System;
@@ -39,8 +47,39 @@
         /// <param name="services"></param>
         public void ConfigureServices(IServiceCollection services)
         {
+            // EF
+            services.AddDbContextPool<ApplicationDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("10HelmetsConnectionString")));
+
+            // Configuraciòn del auto mapeador
+            var configuracionMapeo = new MapperConfiguration(mc =>
+            {
+                mc.AddProfile(new MapperConfig());
+            });
+            IMapper mapeador = configuracionMapeo.CreateMapper();
+            services.AddSingleton(mapeador);
+
+            // Service injection
+            services.AddTransient(typeof(IBaseService<>), typeof(BaseService<>));
+            services.AddTransient<IActivityService, ActivityService>();
+            services.AddTransient<IActivityTypeService, ActivityTypeService>();
+            services.AddTransient<INoteService, NoteService>();
+            services.AddTransient<IProjectBudgetService, ProjectBudgetService>();
+            services.AddTransient<IProjectService, ProjectService>();
+            services.AddTransient<IServiceOrderService, ServiceOrderService>();
+
+            // Repositories injection
+            services.AddTransient(typeof(IBaseRepository<>), typeof(BaseRepository<>));
+            services.AddTransient<IActivityRepository, ActivityRepository>();
+            services.AddTransient<IActivityTypeRepository, ActivityTypeRepository>();
+            services.AddTransient<INoteRepository, NoteRepository>();
+            services.AddTransient<IProjectBudgetRepository, ProjectBudgetRepository>();
+            services.AddTransient<IProjectRepository, ProjectRepository>();
+            services.AddTransient<IServiceOrderRepository, ServiceOrderRepoitory>();
+
+            // Enable MVC
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
+            // Enable swagger
             services.AddSwaggerGen(config =>
             {
                 config.SwaggerDoc("v1", new Swashbuckle.AspNetCore.Swagger.Info()
@@ -66,7 +105,9 @@
             {
                 app.UseDeveloperExceptionPage();
             }
+
             app.UseStaticFiles();
+
             app.UseCors(options =>
             {
                 options.AllowAnyOrigin();
