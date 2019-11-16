@@ -29,7 +29,7 @@
         /// <summary>
         /// 
         /// </summary>
-        public int projectId { get; set; }
+        public int ProjectId { get; set; }
 
         /// <summary>
         /// 
