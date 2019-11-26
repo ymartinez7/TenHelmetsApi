@@ -29,5 +29,25 @@
         /// 
         /// </summary>
         NotAuthorized,
+
+        /// <summary>
+        /// 
+        /// </summary>
+        NotFound,
+
+        /// <summary>
+        /// 
+        /// </summary>
+        InvalidModel,
+
+        /// <summary>
+        /// 
+        /// </summary>
+        NotEqualParameter,
+
+        /// <summary>
+        /// 
+        /// </summary>
+        UserOrPasswordInvalid,
     }
 }

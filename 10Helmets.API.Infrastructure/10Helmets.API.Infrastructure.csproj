@@ -11,9 +11,13 @@
     <Compile Remove="Data\Migrations\20191115134536_Initial.cs" />
     <Compile Remove="Data\Migrations\20191115134857_Initial.cs" />
     <Compile Remove="Data\Migrations\20191115145231_Initial_DB.cs" />
+    <Compile Remove="Data\Migrations\20191121095103_User_Security.cs" />
+    <Compile Remove="Data\Migrations\20191121102344_AddUserSystem.cs" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="2.2.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.2.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.2.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.2.0">
       <PrivateAssets>all</PrivateAssets>
@@ -28,7 +32,6 @@
 
   <ItemGroup>
     <Folder Include="Logging\" />
-    <Folder Include="Identity\" />
     <Folder Include="Services\" />
   </ItemGroup>
 

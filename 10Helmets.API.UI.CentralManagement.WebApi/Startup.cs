@@ -5,15 +5,22 @@
     using _10Helmets.API.Core.Services;
     using _10Helmets.API.Infrastructure.Data.Context;
     using _10Helmets.API.Infrastructure.Data.Repositories;
+    using _10Helmets.API.Infrastructure.Identity;
+    using _10Helmets.API.UI.CentralManagement.WebApi.Mapper;
+    using AutoMapper;
+    using Microsoft.AspNetCore.Authentication.JwtBearer;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
+    using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
+    using Microsoft.IdentityModel.Tokens;
     using System;
     using System.IO;
     using System.Reflection;
+    using System.Text;
 
     /// <summary>
     /// 
@@ -47,6 +54,34 @@
         {
             // EF
             services.AddDbContextPool<ApplicationDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("10HelmetsConnectionString")));
+
+            // Identity
+            services.AddIdentity<User, IdentityRole>()
+                .AddEntityFrameworkStores<ApplicationDbContext>()
+                .AddDefaultTokenProviders();
+
+            // Authentication
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(options => 
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuer = true,
+                    ValidateAudience = true,
+                    ValidateLifetime = true,
+                    ValidateIssuerSigningKey = true,
+                    ValidIssuer = "yourdomain.com",
+                    ValidAudience = "yourdomain.com",
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Secret_Key"])),
+                    ClockSkew = TimeSpan.Zero
+                });
+
+            // Configuraciòn del auto mapeador
+            var configuracionMapeo = new MapperConfiguration(mc =>
+            {
+                mc.AddProfile(new MapperConfig());
+            });
+            IMapper mapeador = configuracionMapeo.CreateMapper();
+            services.AddSingleton(mapeador);
 
             // Service injection
             services.AddTransient(typeof(IBaseService<>), typeof(BaseService<>));
@@ -133,6 +168,7 @@
                 config.SwaggerEndpoint("../swagger/v1/swagger.json", "Backend API Central Management");
             });
 
+            app.UseAuthentication();
             app.UseMvc();
         }
         #endregion

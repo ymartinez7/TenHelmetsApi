@@ -2,13 +2,14 @@
 {
     using _10Helmets.API.Core.Entities;
     using _10Helmets.API.Infrastructure.Data.Config;
+    using _10Helmets.API.Infrastructure.Identity;
+    using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore;
-    using Microsoft.Extensions.Logging;
 
     /// <summary>
     /// 
     /// </summary>
-    public sealed class ApplicationDbContext : DbContext
+    public sealed class ApplicationDbContext : IdentityDbContext<User>
     {
         #region Properties
         /// <summary>
@@ -285,6 +286,7 @@
             modelBuilder.ApplyConfiguration(new ProjectBudgetConfig());
             modelBuilder.ApplyConfiguration(new ProjectConfig());
             modelBuilder.ApplyConfiguration(new ServiceOrderConfig());
+            base.OnModelCreating(modelBuilder);
         }
         #endregion
     }

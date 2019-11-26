@@ -5,10 +5,13 @@
     using _10Helmets.API.Core.Services;
     using _10Helmets.API.Infrastructure.Data.Context;
     using _10Helmets.API.Infrastructure.Data.Repositories;
+    using _10Helmets.API.Infrastructure.Identity;
     using _10Helmets.API.UI.Operations.WebApi.Mapper;
     using AutoMapper;
+    using Microsoft.AspNetCore.Authentication.JwtBearer;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
+    using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Configuration;
@@ -49,6 +52,15 @@
         {
             // EF
             services.AddDbContextPool<ApplicationDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("10HelmetsConnectionString")));
+
+            // Identity
+            services.AddIdentity<User, IdentityRole>()
+                .AddEntityFrameworkStores<ApplicationDbContext>()
+                .AddDefaultTokenProviders();
+
+            // Authentication
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer();
 
             // Configuraciòn del auto mapeador
             var configuracionMapeo = new MapperConfiguration(mc =>
@@ -121,6 +133,7 @@
                 config.SwaggerEndpoint("../swagger/v1/swagger.json", "Backend API Operations");
             });
 
+            app.UseAuthentication();
             app.UseMvc();
         }
         #endregion

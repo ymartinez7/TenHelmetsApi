@@ -55,6 +55,61 @@
             <param name="description"></param>
             <param name="date"></param>
         </member>
+        <member name="T:_10Helmets.API.UI.Operations.WebApi.Controllers.ProjectBudgetsController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:_10Helmets.API.UI.Operations.WebApi.Controllers.ProjectBudgetsController._projectBudgetService">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:_10Helmets.API.UI.Operations.WebApi.Controllers.ProjectBudgetsController.#ctor(Microsoft.Extensions.Configuration.IConfiguration,AutoMapper.IMapper,Microsoft.AspNetCore.Hosting.IHostingEnvironment,_10Helmets.API.Core.Interfaces.Services.IProjectBudgetService)">
+            <summary>
+            
+            </summary>
+            <param name="configuration"></param>
+            <param name="mapper"></param>
+            <param name="environment"></param>
+            <param name="projectBudgetService"></param>
+        </member>
+        <member name="M:_10Helmets.API.UI.Operations.WebApi.Controllers.ProjectBudgetsController.Get(System.Int32)">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:_10Helmets.API.UI.Operations.WebApi.Controllers.ProjectBudgetsController.GetById(System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="projectBudgetId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:_10Helmets.API.UI.Operations.WebApi.Controllers.ProjectBudgetsController.Post(System.Int32,_10Helmets.API.Core.Entities.ProjectBudget)">
+            <summary>
+            
+            </summary>
+            <param name="projectBudgetId"></param>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:_10Helmets.API.UI.Operations.WebApi.Controllers.ProjectBudgetsController.Put(System.Int32,_10Helmets.API.Core.Entities.ProjectBudget)">
+            <summary>
+            
+            </summary>
+            <param name="projectBudgetId"></param>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:_10Helmets.API.UI.Operations.WebApi.Controllers.ProjectBudgetsController.Delete(System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="projectBudgetId"></param>
+            <returns></returns>
+        </member>
         <member name="T:_10Helmets.API.UI.Operations.WebApi.Controllers.ProjectsController">
             <summary>
             
@@ -78,6 +133,35 @@
             <summary>
             
             </summary>
+            <returns></returns>
+        </member>
+        <member name="M:_10Helmets.API.UI.Operations.WebApi.Controllers.ProjectsController.GetById(System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="projectId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:_10Helmets.API.UI.Operations.WebApi.Controllers.ProjectsController.Post(_10Helmets.API.Core.Entities.Project)">
+            <summary>
+            
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:_10Helmets.API.UI.Operations.WebApi.Controllers.ProjectsController.Put(System.Int32,_10Helmets.API.Core.Entities.Project)">
+            <summary>
+            
+            </summary>
+            <param name="projectId"></param>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:_10Helmets.API.UI.Operations.WebApi.Controllers.ProjectsController.Delete(System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="projectId"></param>
             <returns></returns>
         </member>
         <member name="T:_10Helmets.API.UI.Operations.WebApi.Mapper.MapperConfig">

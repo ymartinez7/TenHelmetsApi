@@ -2,6 +2,8 @@
 {
     using _10Helmets.API.Core.Enums;
     using AutoMapper;
+    using Microsoft.AspNetCore.Authentication.JwtBearer;
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Configuration;
@@ -11,6 +13,7 @@
     /// 
     /// </summary>
     [ApiController]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public class BaseController : ControllerBase
     {
         #region Fields
