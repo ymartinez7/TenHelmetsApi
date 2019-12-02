@@ -115,6 +115,7 @@
         [Route("Login")]
         [ProducesResponseType(200)]
         [ProducesResponseType(400)]
+        [AllowAnonymous]
         public async Task<ActionResult<ResponseDTO>> Login(UserInfo model)
         {
             try
@@ -173,11 +174,15 @@
                 expires: expiration,
                 signingCredentials: credentials);
 
-            return Ok(new
-            {
-                Token = new JwtSecurityTokenHandler().WriteToken(token),
-                Expiration = expiration
-            });
+            //return Ok(new
+            //{
+            //    new JwtSecurityTokenHandler().WriteToken(token),
+            //    //Token = new JwtSecurityTokenHandler().WriteToken(token),
+            //    //Expiration = expiration
+            //});
+
+
+            return Ok(new JwtSecurityTokenHandler().WriteToken(token));
         }
         #endregion
     }

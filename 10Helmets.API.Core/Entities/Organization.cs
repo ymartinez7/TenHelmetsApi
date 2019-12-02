@@ -34,5 +34,10 @@
         /// 
         /// </summary>
         public virtual IEnumerable<Unit> Units { get; private set; }
+
+        public string Path { get; set; }
+        public string SubPath { get; set; }
+        public string FileName { get; set; }
+        public string StringContent { get; set; }
     }
 }

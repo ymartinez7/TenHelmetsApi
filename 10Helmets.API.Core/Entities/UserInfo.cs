@@ -14,5 +14,9 @@
         /// 
         /// </summary>
         public string Password { get; set; }
+
+        public string AppId { get; set; }
+
+        public string Token { get; set; }
     }
 }
