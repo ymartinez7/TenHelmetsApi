@@ -105,16 +105,6 @@
         /// <summary>
         /// 
         /// </summary>
-        public DbSet<EventLog> EventLogs { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public DbSet<EventLogType> EventLogTypes { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
         public DbSet<File> Files { get; set; }
 
         /// <summary>
@@ -185,7 +175,7 @@
         /// <summary>
         /// 
         /// </summary>
-        public DbSet<Rol> Roles { get; set; }
+        //public DbSet<Rol> Roles { get; set; }
 
         /// <summary>
         /// 
@@ -264,8 +254,6 @@
             modelBuilder.ApplyConfiguration(new AlertTypeConfig());
             modelBuilder.ApplyConfiguration(new BrandConfig());
             modelBuilder.ApplyConfiguration(new CustomerConfig());
-            modelBuilder.ApplyConfiguration(new EventLogConfig());
-            modelBuilder.ApplyConfiguration(new EventLogTypeConfig());
             modelBuilder.ApplyConfiguration(new FileConfig());
             modelBuilder.ApplyConfiguration(new ModelConfig());
             modelBuilder.ApplyConfiguration(new OrganizationConfig());

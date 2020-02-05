@@ -4,222 +4,23 @@
         <name>10Helmets.API.UI.CentralManagement.WebApi</name>
     </assembly>
     <members>
-        <member name="T:_10Helmets.API.UI.CentralManagement.WebApi.Controllers.AccountsController">
+        <member name="T:_10Helmets.API.UI.CentralManagement.WebApi.Program">
             <summary>
             
             </summary>
         </member>
-        <member name="F:_10Helmets.API.UI.CentralManagement.WebApi.Controllers.AccountsController._userManager">
+        <member name="M:_10Helmets.API.UI.CentralManagement.WebApi.Program.Main(System.String[])">
             <summary>
             
             </summary>
+            <param name="args"></param>
         </member>
-        <member name="F:_10Helmets.API.UI.CentralManagement.WebApi.Controllers.AccountsController._signInManager">
+        <member name="M:_10Helmets.API.UI.CentralManagement.WebApi.Program.CreateWebHostBuilder(System.String[])">
             <summary>
             
             </summary>
-        </member>
-        <member name="M:_10Helmets.API.UI.CentralManagement.WebApi.Controllers.AccountsController.#ctor(Microsoft.Extensions.Configuration.IConfiguration,AutoMapper.IMapper,Microsoft.AspNetCore.Hosting.IHostingEnvironment,Microsoft.AspNetCore.Identity.UserManager{_10Helmets.API.Infrastructure.Identity.User},Microsoft.AspNetCore.Identity.SignInManager{_10Helmets.API.Infrastructure.Identity.User})">
-            <summary>
-            
-            </summary>
-            <param name="configuration"></param>
-            <param name="mapper"></param>
-            <param name="environment"></param>
-            <param name="userManager"></param>
-            <param name="signInManager"></param>
-        </member>
-        <member name="M:_10Helmets.API.UI.CentralManagement.WebApi.Controllers.AccountsController.CreateUser(_10Helmets.API.Core.Entities.UserInfo)">
-            <summary>
-            
-            </summary>
-            <param name="model"></param>
+            <param name="args"></param>
             <returns></returns>
-        </member>
-        <member name="M:_10Helmets.API.UI.CentralManagement.WebApi.Controllers.AccountsController.Login(_10Helmets.API.Core.Entities.UserInfo)">
-            <summary>
-            
-            </summary>
-            <param name="model"></param>
-            <returns></returns>
-        </member>
-        <member name="M:_10Helmets.API.UI.CentralManagement.WebApi.Controllers.AccountsController.BuildToken(_10Helmets.API.Core.Entities.UserInfo)">
-            <summary>
-            
-            </summary>
-            <param name="model"></param>
-            <returns></returns>
-        </member>
-        <member name="T:_10Helmets.API.UI.CentralManagement.WebApi.Controllers.BaseController">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="F:_10Helmets.API.UI.CentralManagement.WebApi.Controllers.BaseController._mapper">
-            <summary>
-            Mapea las entidades a viemodels
-            </summary>
-        </member>
-        <member name="F:_10Helmets.API.UI.CentralManagement.WebApi.Controllers.BaseController._configuration">
-            <summary>
-            Contiene las variables 
-            de configuración de la aplicación
-            </summary>
-        </member>
-        <member name="F:_10Helmets.API.UI.CentralManagement.WebApi.Controllers.BaseController._environment">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="M:_10Helmets.API.UI.CentralManagement.WebApi.Controllers.BaseController.#ctor(Microsoft.Extensions.Configuration.IConfiguration,AutoMapper.IMapper,Microsoft.AspNetCore.Hosting.IHostingEnvironment)">
-            <summary>
-            
-            </summary>
-            <param name="configuration"></param>
-            <param name="mapper"></param>
-            <param name="environment"></param>
-        </member>
-        <member name="M:_10Helmets.API.UI.CentralManagement.WebApi.Controllers.BaseController.GetConfigurationValue(System.String)">
-            <summary>
-            
-            </summary>
-            <param name="valueName"></param>
-            <returns></returns>
-        </member>
-        <member name="M:_10Helmets.API.UI.CentralManagement.WebApi.Controllers.BaseController.GetMessage(System.Int32)">
-            <summary>
-            
-            </summary>
-            <param name="messageCode"></param>
-            <returns></returns>
-        </member>
-        <member name="M:_10Helmets.API.UI.CentralManagement.WebApi.Controllers.BaseController.HandleException(System.String,System.String,System.String)">
-            <summary>
-            
-            </summary>
-            <param name="source"></param>
-            <param name="description"></param>
-            <param name="date"></param>
-        </member>
-        <member name="T:_10Helmets.API.UI.CentralManagement.WebApi.Controllers.OrganizationsController">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="F:_10Helmets.API.UI.CentralManagement.WebApi.Controllers.OrganizationsController._organizationService">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="M:_10Helmets.API.UI.CentralManagement.WebApi.Controllers.OrganizationsController.#ctor(Microsoft.Extensions.Configuration.IConfiguration,AutoMapper.IMapper,Microsoft.AspNetCore.Hosting.IHostingEnvironment,_10Helmets.API.Core.Interfaces.Services.IOrganizationService)">
-            <summary>
-            
-            </summary>
-            <param name="configuration"></param>
-            <param name="mapper"></param>
-            <param name="environment"></param>
-            <param name="organizationService"></param>
-        </member>
-        <member name="M:_10Helmets.API.UI.CentralManagement.WebApi.Controllers.OrganizationsController.Get">
-            <summary>
-            
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:_10Helmets.API.UI.CentralManagement.WebApi.Controllers.OrganizationsController.GetById(System.Int32)">
-            <summary>
-            
-            </summary>
-            <param name="organizationId"></param>
-            <returns></returns>
-        </member>
-        <member name="M:_10Helmets.API.UI.CentralManagement.WebApi.Controllers.OrganizationsController.Post(_10Helmets.API.Core.Entities.Organization)">
-            <summary>
-            
-            </summary>
-            <param name="model"></param>
-            <returns></returns>
-        </member>
-        <member name="M:_10Helmets.API.UI.CentralManagement.WebApi.Controllers.OrganizationsController.Put(System.Int32,_10Helmets.API.Core.Entities.Organization)">
-            <summary>
-            
-            </summary>
-            <param name="organizationId"></param>
-            <param name="model"></param>
-            <returns></returns>
-        </member>
-        <member name="M:_10Helmets.API.UI.CentralManagement.WebApi.Controllers.OrganizationsController.Delete(System.Int32)">
-            <summary>
-            
-            </summary>
-            <param name="organizationId"></param>
-            <returns></returns>
-        </member>
-        <member name="T:_10Helmets.API.UI.CentralManagement.WebApi.Controllers.UnitsController">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="F:_10Helmets.API.UI.CentralManagement.WebApi.Controllers.UnitsController._unitService">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="M:_10Helmets.API.UI.CentralManagement.WebApi.Controllers.UnitsController.#ctor(Microsoft.Extensions.Configuration.IConfiguration,AutoMapper.IMapper,Microsoft.AspNetCore.Hosting.IHostingEnvironment,_10Helmets.API.Core.Interfaces.Services.IUnitService)">
-            <summary>
-            
-            </summary>
-            <param name="configuration"></param>
-            <param name="mapper"></param>
-            <param name="environment"></param>
-            <param name="unitService"></param>
-        </member>
-        <member name="M:_10Helmets.API.UI.CentralManagement.WebApi.Controllers.UnitsController.Get(System.Int32)">
-            <summary>
-            
-            </summary>
-            <param name="organizationId"></param>
-            <returns></returns>
-        </member>
-        <member name="M:_10Helmets.API.UI.CentralManagement.WebApi.Controllers.UnitsController.GetById(System.Int32)">
-            <summary>
-            
-            </summary>
-            <param name="unitId"></param>
-            <returns></returns>
-        </member>
-        <member name="M:_10Helmets.API.UI.CentralManagement.WebApi.Controllers.UnitsController.Post(System.Int32,_10Helmets.API.Core.Entities.Unit)">
-            <summary>
-            
-            </summary>
-            <param name="unitId"></param>
-            <param name="model"></param>
-            <returns></returns>
-        </member>
-        <member name="M:_10Helmets.API.UI.CentralManagement.WebApi.Controllers.UnitsController.Put(System.Int32,_10Helmets.API.Core.Entities.Unit)">
-            <summary>
-            
-            </summary>
-            <param name="unitId"></param>
-            <param name="model"></param>
-            <returns></returns>
-        </member>
-        <member name="M:_10Helmets.API.UI.CentralManagement.WebApi.Controllers.UnitsController.Delete(System.Int32)">
-            <summary>
-            
-            </summary>
-            <param name="unitId"></param>
-            <returns></returns>
-        </member>
-        <member name="T:_10Helmets.API.UI.CentralManagement.WebApi.Mapper.MapperConfig">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="M:_10Helmets.API.UI.CentralManagement.WebApi.Mapper.MapperConfig.#ctor">
-            <summary>
-            
-            </summary>
         </member>
         <member name="T:_10Helmets.API.UI.CentralManagement.WebApi.Startup">
             <summary>
