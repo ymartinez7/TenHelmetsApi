@@ -149,9 +149,9 @@
                     Title = "10Helmets API RESTful"
                 });
 
-                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
-                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
-                config.IncludeXmlComments(xmlPath);
+                //var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                //var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                //config.IncludeXmlComments(xmlPath);
             });
 
             // Logger
