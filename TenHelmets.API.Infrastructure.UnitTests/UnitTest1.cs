@@ -1,6 +1,6 @@
 using NUnit.Framework;
 
-namespace Tests
+namespace TenHelmets.API.Infrastructure.UnitTests
 {
     public class Tests
     {
