@@ -1,16 +1,19 @@
 ﻿using AutoMapper;
-using TenHelmets.API.Core.DTOs;
-using TenHelmets.API.Core.Entities;
-using TenHelmets.API.Core.Enums;
-using TenHelmets.API.Core.Interfaces.Services;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using System;
+using System.Collections.Generic;
 using System.Net.Mime;
 using System.Threading.Tasks;
+using TenHelmets.API.Core.DTOs;
+using TenHelmets.API.Core.DTOs.Organizations;
+using TenHelmets.API.Core.Entities;
+using TenHelmets.API.Core.Enums;
+using TenHelmets.API.Core.Interfaces.Services;
 
 namespace TenHelmets.API.WebApi.Controllers
 {
@@ -29,7 +32,7 @@ namespace TenHelmets.API.WebApi.Controllers
                   mapper,
                   environment)
         {
-            this._organizationService = organizationService;
+            _organizationService = organizationService;
         }
 
         [HttpGet]
@@ -39,23 +42,22 @@ namespace TenHelmets.API.WebApi.Controllers
         {
             try
             {
-                var organizations = await this._organizationService.FindAsync();
+                var organizations = await _organizationService.FindAsync();
 
                 if (organizations == null)
                 {
                     return BadRequest(new ResponseDTO(false,
-                        this.GetMessage((int)Message.InternalError),
+                        GetMessage((int)Message.InternalError),
                         null));
-
                 }
 
                 return Ok(new ResponseDTO(true,
-                this.GetMessage((int)Message.Correct),
-                organizations));
+                    GetMessage((int)Message.Correct),
+                    _mapper.Map<List<OrganizationDetailDTO>>(organizations)));
             }
             catch (Exception ex)
             {
-                this.HandleException("OrganizationsController.Get()",
+                HandleException("OrganizationsController.Get()",
                     "Message: " + ex.Message + " Trace: " + ex.StackTrace,
                     DateTime.Now.ToString());
 
@@ -65,7 +67,7 @@ namespace TenHelmets.API.WebApi.Controllers
             }
         }
 
-        [HttpGet("{organizationId}")]
+        [HttpGet("{organizationId}",Name = "GetById")]
         [ProducesResponseType(200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(404)]
@@ -83,8 +85,8 @@ namespace TenHelmets.API.WebApi.Controllers
                 }
 
                 return Ok(new ResponseDTO(true,
-                this.GetMessage((int)Message.Correct),
-                organization));
+                GetMessage((int)Message.Correct),
+                _mapper.Map<OrganizationDetailDTO>(organization)));
             }
             catch (Exception ex)
             {
@@ -101,33 +103,33 @@ namespace TenHelmets.API.WebApi.Controllers
         [HttpPost]
         [ProducesResponseType(201)]
         [ProducesResponseType(400)]
-        public async Task<ActionResult<ResponseDTO>> Post(Organization model)
+        public async Task<ActionResult<ResponseDTO>> Post(OrganizationInput model)
         {
             try
             {
                 if (!ModelState.IsValid)
                 {
                     return BadRequest(new ResponseDTO(false,
-                        this.GetMessage((int)Message.InvalidModel),
+                        GetMessage((int)Message.InvalidModel),
                         ModelState));
                 }
 
-                var organization = await this._organizationService.AddAsync(model);
+                var organization = await this._organizationService.AddAsync(_mapper.Map<Organization>(model));
 
                 if (organization == null)
                 {
                     return BadRequest(new ResponseDTO(false,
-                        this.GetMessage((int)Message.InternalError),
+                        GetMessage((int)Message.InternalError),
                         null));
                 }
 
                 return CreatedAtAction("GetById",
-                    new { id = organization.Id },
+                    new { organizationId = organization.Id },
                     organization);
             }
             catch (Exception ex)
             {
-                this.HandleException("OrganizationsController.Post()",
+                HandleException("OrganizationsController.Post()",
                     "Message: " + ex.Message + " Trace: " + ex.StackTrace,
                     DateTime.Now.ToString());
 
@@ -141,7 +143,7 @@ namespace TenHelmets.API.WebApi.Controllers
         [ProducesResponseType(200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(404)]
-        public async Task<ActionResult<ResponseDTO>> Put(int organizationId, Organization model)
+        public async Task<ActionResult<ResponseDTO>> Put(int organizationId, OrganizationDetailDTO model)
         {
             try
             {
@@ -159,15 +161,15 @@ namespace TenHelmets.API.WebApi.Controllers
                         ModelState));
                 }
 
-                await this._organizationService.UpdateAsync(model);
+                await this._organizationService.UpdateAsync(_mapper.Map<Organization>(model));
 
                 return Ok(new ResponseDTO(true,
-                this.GetMessage((int)Message.Correct),
+                GetMessage((int)Message.Correct),
                 model));
             }
             catch (Exception ex)
             {
-                this.HandleException("OrganizationsController.Put()",
+                HandleException("OrganizationsController.Put()",
                     "Message: " + ex.Message + " Trace: " + ex.StackTrace,
                     DateTime.Now.ToString());
 
@@ -198,7 +200,7 @@ namespace TenHelmets.API.WebApi.Controllers
 
                 return Ok(new ResponseDTO(true,
                 this.GetMessage((int)Message.Correct),
-                organization));
+                _mapper.Map<OrganizationDetailDTO>(organization)));
             }
             catch (Exception ex)
             {

@@ -146,7 +146,7 @@ namespace TenHelmets.API.WebApi.Controllers
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(this._configuration["Secret_Key"]));
             var credentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
-            var expiration = DateTime.UtcNow.AddMinutes(2);
+            var expiration = DateTime.UtcNow.AddHours(2);
 
             JwtSecurityToken token = new JwtSecurityToken(issuer: "yourdomain.com",
                 audience: "yourdomain.com",

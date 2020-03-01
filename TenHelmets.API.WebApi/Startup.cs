@@ -1,40 +1,38 @@
-﻿namespace TenHelmets.API.UI.CentralManagement.WebApi
-{
-    using TenHelmets.API.Core.Interfaces.Repositories;
-    using TenHelmets.API.Core.Interfaces.Services;
-    using TenHelmets.API.Core.Services;
-    using TenHelmets.API.Infrastructure.Data.Context;
-    using TenHelmets.API.Infrastructure.Data.Repositories;
-    using TenHelmets.API.Infrastructure.Identity;
-    using TenHelmets.API.Infrastructure.Logging;
-    using TenHelmets.API.UI.CentralManagement.WebApi.Mapper;
-    using AutoMapper;
-    using Microsoft.AspNetCore.Authentication.JwtBearer;
-    using Microsoft.AspNetCore.Builder;
-    using Microsoft.AspNetCore.Hosting;
-    using Microsoft.AspNetCore.Identity;
-    using Microsoft.AspNetCore.Mvc;
-    using Microsoft.EntityFrameworkCore;
-    using Microsoft.Extensions.Configuration;
-    using Microsoft.Extensions.DependencyInjection;
-    using Microsoft.Extensions.Logging;
-    using Microsoft.IdentityModel.Tokens;
-    using Serilog;
-    using System;
-    using System.IO;
-    using System.Reflection;
-    using System.Text;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+using Microsoft.IdentityModel.Tokens;
+using Serilog;
+using Swashbuckle.AspNetCore.Swagger;
+using System;
+using System.Text;
+using TenHelmets.API.Core.Interfaces.Repositories;
+using TenHelmets.API.Core.Interfaces.Services;
+using TenHelmets.API.Core.Services;
+using TenHelmets.API.Infrastructure.Data.Context;
+using TenHelmets.API.Infrastructure.Data.Repositories;
+using TenHelmets.API.Infrastructure.Identity;
+using TenHelmets.API.Infrastructure.Logging;
+using TenHelmets.API.UI.CentralManagement.WebApi.Mapper;
 
+namespace TenHelmets.API.UI.CentralManagement.WebApi
+{
     public class Startup
     {
         public IConfiguration Configuration { get; }
-
 
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
         }
-
 
         public void ConfigureServices(IServiceCollection services)
         {
@@ -131,10 +129,47 @@
                     Title = "10Helmets API RESTful"
                 });
 
+                config.AddSecurityDefinition("Bearer", new ApiKeyScheme
+                {
+                    Description=  "JWT Token Bearer",
+                    Name = "Authoritation",
+                    In = "header",
+                    Type = "apiKey"
+                });
+
                 //var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
                 //var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
                 //config.IncludeXmlComments(xmlPath);
             });
+
+            //JWT
+            //services.AddAuthorization(option =>
+            //{
+            //    option.DefaultPolicy = new AuthorizationPolicyBuilder(JwtBearerDefaults.AuthenticationScheme)
+            //    .RequireAuthenticatedUser()
+            //    .Build();
+            //});
+
+            //var key = Encoding.ASCII.GetBytes(Configuration["Secret_Key"]);
+            //services.AddAuthentication(x =>
+            //{
+            //    x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+            //    x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            //})
+            //.AddJwtBearer(x =>
+            //{
+            //    x.RequireHttpsMetadata = false;
+            //    x.SaveToken = true;
+            //    x.TokenValidationParameters = new TokenValidationParameters
+            //    {
+            //        ValidateIssuerSigningKey = true,
+            //        IssuerSigningKey = new SymmetricSecurityKey(key),
+            //        ValidateIssuer = false,
+            //        ValidateAudience = false
+            //    };
+            //});
+
+
 
             // Logger
             services.AddScoped(typeof(IApplicationLogger<>), typeof(LoggerAdapter<>));
