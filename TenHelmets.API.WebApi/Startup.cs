@@ -13,6 +13,7 @@ using Microsoft.IdentityModel.Tokens;
 using Serilog;
 using Swashbuckle.AspNetCore.Swagger;
 using System;
+using System.Collections.Generic;
 using System.Text;
 using TenHelmets.API.Core.Interfaces.Repositories;
 using TenHelmets.API.Core.Interfaces.Services;
@@ -43,21 +44,6 @@ namespace TenHelmets.API.UI.CentralManagement.WebApi
             services.AddIdentity<User, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
-
-            // Authentication
-            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-                .AddJwtBearer(options =>
-                options.TokenValidationParameters = new TokenValidationParameters
-                {
-                    ValidateIssuer = true,
-                    ValidateAudience = true,
-                    ValidateLifetime = true,
-                    ValidateIssuerSigningKey = true,
-                    ValidIssuer = "yourdomain.com",
-                    ValidAudience = "yourdomain.com",
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Secret_Key"])),
-                    ClockSkew = TimeSpan.Zero
-                });
 
             // Configuraciòn del auto mapeador
             var configuracionMapeo = new MapperConfiguration(mc =>
@@ -110,16 +96,12 @@ namespace TenHelmets.API.UI.CentralManagement.WebApi
             services.AddTransient<IResourceTypeRepository, ResourceTypeRepository>();
             services.AddTransient<ISectorRepository, SectorRepository>();
             services.AddTransient<IUnitRepository, UnitRepository>();
-            services.AddTransient(typeof(IBaseRepository<>), typeof(BaseRepository<>));
             services.AddTransient<IActivityRepository, ActivityRepository>();
             services.AddTransient<IActivityTypeRepository, ActivityTypeRepository>();
             services.AddTransient<INoteRepository, NoteRepository>();
             services.AddTransient<IProjectBudgetRepository, ProjectBudgetRepository>();
             services.AddTransient<IProjectRepository, ProjectRepository>();
             services.AddTransient<IServiceOrderRepository, ServiceOrderRepoitory>();
-
-            // Enable MVC
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             // Enable swagger
             services.AddSwaggerGen(config =>
@@ -131,10 +113,15 @@ namespace TenHelmets.API.UI.CentralManagement.WebApi
 
                 config.AddSecurityDefinition("Bearer", new ApiKeyScheme
                 {
-                    Description = "JWT Token Bearer",
-                    Name = "Authoritation",
+                    Description = "Inserte el token JWT con Bearer por delante",
+                    Name = "Authorization",
                     In = "header",
                     Type = "apiKey"
+                });
+
+                config.AddSecurityRequirement(new Dictionary<string, IEnumerable<string>>
+                {
+                    { "Bearer", new string[] { } }
                 });
 
                 //var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
@@ -154,18 +141,19 @@ namespace TenHelmets.API.UI.CentralManagement.WebApi
             var audience = Configuration["Authentication:Audience"];
             var signingKey = Configuration["Authentication:SigningKey"];
 
-            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
-            {
-                options.Audience = audience;
-                options.TokenValidationParameters = new TokenValidationParameters()
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(options =>
+                options.TokenValidationParameters = new TokenValidationParameters
                 {
                     ValidateIssuer = true,
-                    ValidIssuer = issuer,
-                    ValidateIssuerSigningKey = true,
+                    ValidateAudience = true,
                     ValidateLifetime = true,
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(signingKey))
-                };
-            });
+                    ValidateIssuerSigningKey = true,
+                    ValidIssuer = issuer,
+                    ValidAudience = audience,
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Authentication:SigningKey"])),
+                    ClockSkew = TimeSpan.Zero
+                });
 
             // Logger
             services.AddScoped(typeof(IApplicationLogger<>), typeof(LoggerAdapter<>));
@@ -178,6 +166,9 @@ namespace TenHelmets.API.UI.CentralManagement.WebApi
                     restrictedToMinimumLevel: Serilog.Events.LogEventLevel.Warning,
                     autoCreateSqlTable: true).CreateLogger();
             });
+
+            // Enable MVC
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
         public void Configure(IApplicationBuilder app,

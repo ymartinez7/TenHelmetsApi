@@ -145,7 +145,7 @@ namespace TenHelmets.API.WebApi.Controllers
             };
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(this._configuration["Authentication:SigningKey"]));
-            var credentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256Signature);
+            var credentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
             var expiration = DateTime.UtcNow.AddHours(2);
 
             var token = new JwtSecurityToken(
