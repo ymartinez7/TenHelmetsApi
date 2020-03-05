@@ -11,7 +11,7 @@ using System;
 namespace TenHelmets.API.WebApi.Controllers
 {
     [ApiController]
-    //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public class BaseController : ControllerBase
     {
         protected readonly IMapper _mapper;

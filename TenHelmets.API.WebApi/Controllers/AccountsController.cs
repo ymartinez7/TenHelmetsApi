@@ -144,12 +144,13 @@ namespace TenHelmets.API.WebApi.Controllers
                 new Claim(JwtRegisteredClaimNames.Jti,Guid.NewGuid().ToString()),
             };
 
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(this._configuration["Secret_Key"]));
-            var credentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(this._configuration["Authentication:SigningKey"]));
+            var credentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256Signature);
             var expiration = DateTime.UtcNow.AddHours(2);
 
-            JwtSecurityToken token = new JwtSecurityToken(issuer: "yourdomain.com",
-                audience: "yourdomain.com",
+            var token = new JwtSecurityToken(
+                issuer: this._configuration["Authentication:Issuer"],
+                audience: this._configuration["Authentication:Audience"],
                 claims: claims,
                 expires: expiration,
                 signingCredentials: credentials);
