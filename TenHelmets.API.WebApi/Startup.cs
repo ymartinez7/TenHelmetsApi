@@ -46,7 +46,7 @@ namespace TenHelmets.API.UI.CentralManagement.WebApi
 
             // Authentication
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-                .AddJwtBearer(options => 
+                .AddJwtBearer(options =>
                 options.TokenValidationParameters = new TokenValidationParameters
                 {
                     ValidateIssuer = true,
@@ -131,7 +131,7 @@ namespace TenHelmets.API.UI.CentralManagement.WebApi
 
                 config.AddSecurityDefinition("Bearer", new ApiKeyScheme
                 {
-                    Description=  "JWT Token Bearer",
+                    Description = "JWT Token Bearer",
                     Name = "Authoritation",
                     In = "header",
                     Type = "apiKey"
@@ -143,33 +143,29 @@ namespace TenHelmets.API.UI.CentralManagement.WebApi
             });
 
             //JWT
-            //services.AddAuthorization(option =>
-            //{
-            //    option.DefaultPolicy = new AuthorizationPolicyBuilder(JwtBearerDefaults.AuthenticationScheme)
-            //    .RequireAuthenticatedUser()
-            //    .Build();
-            //});
+            services.AddAuthorization(options =>
+            {
+                options.DefaultPolicy = new AuthorizationPolicyBuilder(JwtBearerDefaults.AuthenticationScheme)
+                .RequireAuthenticatedUser()
+                .Build();
+            });
 
-            //var key = Encoding.ASCII.GetBytes(Configuration["Secret_Key"]);
-            //services.AddAuthentication(x =>
-            //{
-            //    x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-            //    x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-            //})
-            //.AddJwtBearer(x =>
-            //{
-            //    x.RequireHttpsMetadata = false;
-            //    x.SaveToken = true;
-            //    x.TokenValidationParameters = new TokenValidationParameters
-            //    {
-            //        ValidateIssuerSigningKey = true,
-            //        IssuerSigningKey = new SymmetricSecurityKey(key),
-            //        ValidateIssuer = false,
-            //        ValidateAudience = false
-            //    };
-            //});
+            var issuer = Configuration["Authentication:Issuer"];
+            var audience = Configuration["Authentication:Audience"];
+            var signingKey = Configuration["Authentication:SigningKey"];
 
-
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
+            {
+                options.Audience = audience;
+                options.TokenValidationParameters = new TokenValidationParameters()
+                {
+                    ValidateIssuer = true,
+                    ValidIssuer = issuer,
+                    ValidateIssuerSigningKey = true,
+                    ValidateLifetime = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(signingKey))
+                };
+            });
 
             // Logger
             services.AddScoped(typeof(IApplicationLogger<>), typeof(LoggerAdapter<>));
@@ -178,7 +174,7 @@ namespace TenHelmets.API.UI.CentralManagement.WebApi
                 var connectionString = Configuration["ConnectionStrings:10HelmetsConnectionString"];
                 var tableName = "Logs";
                 return new LoggerConfiguration().WriteTo.MSSqlServer(connectionString,
-                    tableName, 
+                    tableName,
                     restrictedToMinimumLevel: Serilog.Events.LogEventLevel.Warning,
                     autoCreateSqlTable: true).CreateLogger();
             });
