@@ -150,6 +150,7 @@ namespace TenHelmets.API.WebApi.Controllers
 
             var token = new JwtSecurityToken(
                 issuer: this._configuration["Authentication:Issuer"],
+                  claims: claims,
                 audience: this._configuration["Authentication:Audience"],
                 claims: claims,
                 expires: expiration,
