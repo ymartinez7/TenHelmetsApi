@@ -95,7 +95,7 @@ namespace TenHelmets.API.WebApi.Controllers
         {
             try
             {
-                this._logger.LogWarning("Inicio del método: Login");
+                //this._logger.LogWarning("Inicio del método: Login");
                 this._seriLogger.Warning("Inicio del método: Login");
 
                 if (!ModelState.IsValid)
@@ -115,7 +115,7 @@ namespace TenHelmets.API.WebApi.Controllers
                         ModelState));
                 }
 
-                this._logger.LogWarning("Final del método: Login");
+                //this._logger.LogWarning("Final del método: Login");
                 this._seriLogger.Warning("Inicio del método: Login");
 
                 return BuildToken(model);

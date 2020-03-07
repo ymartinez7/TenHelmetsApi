@@ -175,7 +175,7 @@ namespace TenHelmets.API.UI.CentralManagement.WebApi
             IHostingEnvironment env,
             ILoggerFactory loggerFactory)
         {
-            loggerFactory.AddFile(@"C:\10HelmetsLogs\Log-{Date}.txt");
+            //loggerFactory.AddFile(@"C:\10HelmetsLogs\Log-{Date}.txt");
 
             if (env.IsDevelopment())
             {
