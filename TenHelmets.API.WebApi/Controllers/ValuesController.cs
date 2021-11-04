@@ -10,13 +10,13 @@ namespace TenHelmets.API.WebApi.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get()
         {
-            return new string[] { "value1", "value2" };
+            return new string[] { "value de pruebas #1", "value de pruebas #2" };
         }
 
         [HttpGet("{id}")]
         public ActionResult<string> Get(int id)
         {
-            return "value de prueba";
+            return "value";
         }
 
         [HttpPost]
