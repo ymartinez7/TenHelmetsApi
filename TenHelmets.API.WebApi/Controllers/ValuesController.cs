@@ -16,7 +16,7 @@ namespace TenHelmets.API.WebApi.Controllers
         [HttpGet("{id}")]
         public ActionResult<string> Get(int id)
         {
-            return "value";
+            return "value de prueba";
         }
 
         [HttpPost]
