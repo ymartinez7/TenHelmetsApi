@@ -25,7 +25,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\TenHelmets.Api.Infrastructure\TenHelmets.Api.Infrastructure.csproj" />
-    <ProjectReference Include="..\TenHelmets.ApiI.Core\TenHelmets.Api.Core.csproj" />
+    <ProjectReference Include="..\TenHelmets.Api.Core\TenHelmets.Api.Core.csproj" />
   </ItemGroup>
 
 </Project>
