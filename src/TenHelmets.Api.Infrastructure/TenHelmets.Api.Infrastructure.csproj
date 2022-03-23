@@ -1,0 +1,34 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <RootNamespace>TenHelmets.API.Infrastructure</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Data\Migrations\20191115125239_Initial_DB.cs" />
+    <Compile Remove="Data\Migrations\20191115133336_Initial.cs" />
+    <Compile Remove="Data\Migrations\20191115134536_Initial.cs" />
+    <Compile Remove="Data\Migrations\20191115134857_Initial.cs" />
+    <Compile Remove="Data\Migrations\20191115145231_Initial_DB.cs" />
+    <Compile Remove="Data\Migrations\20191121095103_User_Security.cs" />
+    <Compile Remove="Data\Migrations\20191121102344_AddUserSystem.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="2.2.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.2.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.2.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.2.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="2.2.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\TenHelmets.Api.Core\TenHelmets.Api.Core.csproj" />
+  </ItemGroup>
+
+</Project>
