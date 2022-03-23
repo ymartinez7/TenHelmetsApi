@@ -15,7 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\TenHelmets.Api.Core\TenHelmets.Api.Core.csproj" />
+    <ProjectReference Include="..\..\src\TenHelmets.Api.Core\TenHelmets.Api.Core.csproj" />
   </ItemGroup>
 
 </Project>

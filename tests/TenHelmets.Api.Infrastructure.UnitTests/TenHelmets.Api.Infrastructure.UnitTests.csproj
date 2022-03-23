@@ -13,7 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\TenHelmets.Api.Infrastructure\TenHelmets.Api.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\src\TenHelmets.Api.Infrastructure\TenHelmets.Api.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>
