@@ -1,6 +1,6 @@
-﻿using TenHelmets.API.Core.Entities;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using TenHelmets.API.Core.Entities;
 
 namespace TenHelmets.API.Infrastructure.Data.Config
 {

@@ -1,9 +1,11 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
 
     <IsPackable>false</IsPackable>
+
+    <RootNamespace>TenHelmets.API.Core.UnitTests</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
@@ -13,7 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\TenHelmets.API.WebApi\TenHelmets.API.WebApi.csproj" />
+    <ProjectReference Include="..\TenHelmets.ApiI.Core\TenHelmets.Api.Core.csproj" />
   </ItemGroup>
 
 </Project>
